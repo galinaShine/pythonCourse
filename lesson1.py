@@ -29,13 +29,13 @@ earn = int(input('enter your earnings: '))
 exp = int(input('enter your expenses: '))
 profit = earn - exp
 if profit > 0:
-    eff = profit / earn
+    eff = round(profit / earn, 1)
     print(f'good job! your efficiency is {eff}!')
     staff = int(input('enter number of workers: '))
     if staff <= 0:
         print('how come?')
     else:
-        profitPP = profit / staff
+        profitPP = round(profit / staff, 1)
         print(f'profit per person is {profitPP}!')
 elif profit < 0:
     print('work harder')
