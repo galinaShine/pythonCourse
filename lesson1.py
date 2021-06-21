@@ -66,11 +66,15 @@ else:
 # Например, пользователь ввёл число 3. Считаем 3 + 33 + 333 = 369.
 # с отрицательными числами не работает
 
-number = input('enter your number: ')
-second_number = number + number
-third_number = second_number + number
-sum = int(number) + int(second_number) + int(third_number)
-print(f'gotya! {number} + {second_number} + {third_number} = {sum}')
+number = input('enter your positive number: ')
+intNumber = int(number)
+if intNumber <=0:
+    print('told you - positive')
+else:
+    second_number = number + number
+    third_number = second_number + number
+    sum = int(number) + int(second_number) + int(third_number)
+    print(f'gotya! {number} + {second_number} + {third_number} = {sum}')
 
 
 # Задание 2
