@@ -12,7 +12,7 @@ elif startKM >= goalKM:
     print('already done that')
 else:
     curKM = startKM
-    day = 0
+    day = 1 # считаем, что первый день мы уже пробежали (и пробежали a км)
     while curKM < goalKM:
         curKM = curKM + curKM/100*10
         day += 1
