@@ -4,21 +4,76 @@
 # а указать явно, в программе.
 
 
+new_list = [2, 'example', True, None, ['1'], (4, 234, 45.8, "text", "word", "el", True, None),
+{'key_1': 'val_1', 'key_2': 'val_2'}]
+for el in new_list:
+    print(type(el))
+    if type(el) is tuple:
+        print(f'found tuple! {el}')
+print(new_list)
+
+new_el = input('enter new el for the lest:')
+new_list.append(new_el)
+index = new_list.index(new_el)
+print(type(new_list[index]))
+
+
 # 2. Для списка реализовать обмен значений соседних элементов. Значениями обмениваются элементы с индексами
 # 0 и 1, 2 и 3 и т. д. При нечётном количестве элементов последний сохранить на своём месте.
 # Для заполнения списка элементов нужно использовать функцию input().
 
+test_list = list(input('enter str for a list'))
+print(test_list)
+print(len(test_list) // 2)
+index = 0
+for i in range(len(test_list) // 2):
+    test_list[index], test_list[index + 1] = test_list[index + 1], test_list[index]
+    index +=2
+print(test_list)
 
 
 # 3. Пользователь вводит месяц в виде целого числа от 1 до 12. Сообщить, к какому времени года
 # относится месяц (зима, весна, лето, осень). Напишите решения через list и dict.
 
+month_dict = {
+    1: ['January', 'winter'],
+    2: ['Fabruary', 'winter'],
+    3: ['March', 'spring'],
+    4: ['April', 'spring'],
+    5: ['May', 'spring'],
+    6: ['June', 'summer'],
+    7: ['July', 'summer'],
+    8: ['August', 'summer'],
+    9: ['September', 'autumn'],
+    10: ['October', 'autumn'],
+    11: ['November', 'autumn'],
+    12: ['December', 'winter']
+}
+numb = int(input('enter month number:'))
+if numb <= 0 or numb > 12:
+    print('wrong data')
+else:
+    month_season = month_dict.get(numb)
+    print(f'Your number is {numb}, your month is {month_season[0]}, it is {month_season[1]}')
 
 
 # 4. Пользователь вводит строку из нескольких слов, разделённых пробелами. Вывести каждое слово с новой строки.
 # Строки нужно пронумеровать. Если слово длинное, выводить только первые 10 букв в слове.
 
-
+input_list = input('enter several words:').split(' ')
+if len(input_list) < 2:
+    print('told u - several')
+else:
+    res_list = []
+    for el in input_list:
+        if el != '':
+            res_list.append(el)
+    if len(res_list) < 1:
+        print('words, not spaces')
+    else:
+        for i in range(len(res_list)):
+            word = res_list[i]
+            print(f'{i+1}. {word[:10]}')
 
 # 5. Реализовать структуру «Рейтинг», представляющую собой набор натуральных чисел, который не возрастает.
 # У пользователя нужно запрашивать новый элемент рейтинга. Если в рейтинге существуют элементы с одинаковыми значениями,

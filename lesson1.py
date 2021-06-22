@@ -25,8 +25,8 @@ else:
 # Если фирма отработала с прибылью, вычислите рентабельность выручки. Это отношение прибыли к выручке.
 # Далее запросите численность сотрудников фирмы и определите прибыль фирмы в расчёте на одного сотрудника.
 
-earn = int(input('enter your earnings: '))
-exp = int(input('enter your expenses: '))
+earn = float(input('enter your earnings: '))
+exp = float(input('enter your expenses: '))
 profit = earn - exp
 if profit > 0:
     eff = round(profit / earn, 1)
@@ -81,10 +81,6 @@ else:
 # Пользователь вводит время в секундах. Переведите время в часы, минуты, секунды
 # и выведите в формате чч:мм:сс. Используйте форматирование строк.
 
-second_number = number + number
-third_number = second_number + number
-print(f'the sum of {number} + {second_number} + {third_number} is: ')
-print(int(number) + int(second_number) + int(third_number))
 seconds = int(input('enter seconds: '))
 days = seconds//(24*3600)
 hours = seconds%(24*3600)//3600
