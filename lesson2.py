@@ -3,7 +3,6 @@
 # Использовать функцию type() для проверки типа. Элементы списка можно не запрашивать у пользователя,
 # а указать явно, в программе.
 
-
 new_list = [2, 'example', True, None, ['1'], (4, 234, 45.8, "text", "word", "el", True, None),
 {'key_1': 'val_1', 'key_2': 'val_2'}]
 for el in new_list:
@@ -73,8 +72,7 @@ else:
     else:
         for i in range(len(res_list)):
             print(f'{i+1}. {res_list[i][:10]}')
-        ### или через enumerate
-        for ind, el in enumerate(res_list):
+        for ind, el in enumerate(res_list): ### или через enumerate
             print(f'{ind + 1}. {el[:10]}')
 
 # 5. Реализовать структуру «Рейтинг», представляющую собой набор натуральных чисел, который не возрастает.
@@ -94,7 +92,7 @@ for ind, el in enumerate(numb_list):
     if new_el > el:
         new_list.insert(ind, new_el)
         break
-else:
+else: ### если цикл отработал до конца без брейка
     new_list.append(new_el)
 print(new_list)
 
@@ -104,18 +102,45 @@ print(new_list)
 # то есть характеристиками товара: © geekbrains.ru 38 название, цена, количество, единица измерения.
 # Структуру нужно сформировать программно, запросив все данные у пользователя.
 
-# Пример готовой структуры:
-# [
-# (1, {“название”: “компьютер”, “цена”: 20000, “количество”: 5, “eд”: “шт.”}), (2, {“название”: “принтер”, “цена”: 6000, “количество”: 2, “eд”: “шт.”}),
-# (3, {“название”: “сканер”, “цена”: 2000, “количество”: 7, “eд”: “шт.”})
-# ]
-
 # Нужно собрать аналитику о товарах. Реализовать словарь, в котором каждый ключ — характеристика товара,
 # например, название. Тогда значение — значений-характеристик, например, список названий товаров.
 # Пример: {
 # “название”: [“компьютер”, “принтер”, “сканер”], “цена”: [20000, 6000, 2000],
 # “количество”: [5, 2, 7],
-# “ед”: [“шт.”]
-# }
+# “ед”: [“шт.”] }
 
 
+### заготовка, чтобы не заполнять всю структуру руками
+animal_list = [
+    (1, {'name': 'dog', 'price': 5, 'number': 10, 'unit': 'ind.'}),
+    (2, {'name': 'cat', 'price': 7, 'number': 5, 'unit': 'ind.'}),
+    (3, {'name': 'rat', 'price': 3, 'number': 15, 'unit': 'ind.'}),
+    (4, {'name': 'parrot', 'price': 17, 'number': 3, 'unit': 'ind.'}),
+    (5, {'name': 'rabbit', 'price': 8, 'number': 6, 'unit': 'ind.'}),
+]
+while True:
+    new_name = input('enter new animal:')
+    new_price = float(input('how much?'))
+    new_numb = int(input('how many?'))
+    new_unit = input('enter unit:')
+    new_item = (len(animal_list) + 1, dict(name = new_name, price = new_price, number = new_numb, unit = new_unit))
+    animal_list.append(new_item)
+    ans = input('enough? type y/n')
+    if ans == 'y':
+        break
+print(animal_list)
+
+animal_dict = {}
+all_keys = animal_list[0][1].keys()
+for el in all_keys:
+    animal_dict.update({el : set()}) ### используем множество, чтобы избавиться от дублей
+
+for el in animal_list:
+    for item in el[1]:
+        animal_dict[item].add(el[1].get(item))
+
+for el in animal_dict: ### доп цикл, если выводить все же хотим не множество, а список
+    animal_dict[el] = list(animal_dict[el])
+
+from pprint import pprint
+pprint(animal_dict)
