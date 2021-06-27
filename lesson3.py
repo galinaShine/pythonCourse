@@ -2,21 +2,78 @@
 # Числа запрашивать у пользователя, предусмотреть обработку ситуации деления на ноль.
 
 def entered_numb(a,b):
-    print("can't do that") if b == 0 else print(a / b)
+    """
+    выполняет деление двух чисел
+    :param a: делимое
+    :param b: делитель (не может быть 0)
+    :return: остаток от деления
+    """
+    res = "can't do that" if b == 0 else round(a / b, 8)
+    return res
 while True:
     a = int(input('enter first number:'))
     b = int(input('enter second number:'))
-    entered_numb(a,b)
+    print(entered_numb(a,b))
+
+# через лямбду, но не поняла как в таком случае предусмотреть 0
+print((lambda num_1, num_2: num_1 / num_2)(int(input('enter first number:')), int(input('enter second number:'))))
+
 
 # 2. Реализовать функцию, принимающую несколько параметров, описывающих данные пользователя:
 # имя, фамилия, год рождения, город проживания, email, телефон.
 # Функция должна принимать параметры как именованные аргументы. Реализовать вывод данных о пользователе одной строкой.
 
+def data(name, surname, year, city, email, tel):
+    print(f'name: {name}, surname: {surname}, year of birth: {year}, city of living: {city}, email: {email}, phone number: {tel}')
 
+data(
+    input('your name:'),
+    input('your surname:'),
+    int(input('year of birth:')),
+    input('city of living:'),
+    input('your email:'),
+    int(input('your phone number:'))
+)
+
+### через kwargs
+def data_2(**kwargs):
+    """
+    выводит полученную информацию одной строкой
+    :param kwargs: входные данные о пользователе
+    :return: вывод данных о пользователе одной строкой
+    """
+    res = ''
+    for el in kwargs:
+        res += f'{el}: {kwargs.get(el)}, '
+    print(res[:-2:])
+
+data_2(name = 'Ivan', surname = 'Ivanov', year = 1978, city = 'London', email = 'exp@mail.ru', number = 1234567)
 
 
 # 3. Реализовать функцию my_func(), которая принимает три позиционных аргумента, и возвращает сумму наибольших двух аргументов.
 
+def my_func(num_1, num_2, num_3):
+    """
+    принимает три позиционных аргумента, возвращает сумму наибольших двух аргументов
+    :param num_1: первое число
+    :param num_2: второе число
+    :param num_3: третье число
+    :return: сумма наибольших двух из полученных чисел
+    """
+    if type(num_1) is not float or type(num_2) is not float or type(num_3) is not float:
+        res = 'error'
+    else:
+        global my_list # для экспериментов
+        my_list = list((num_1, num_2, num_3))
+        my_list.remove(min(num_1, num_2, num_3))
+        res = round(sum(my_list), 2)
+    return res
+
+first_numb = float(input('enter 1st number:'))
+second_numb = float(input('enter 2nd number:'))
+third_numb = float(input('enter 3rd number:'))
+print(my_func(first_numb, second_numb, third_numb))
+print(my_list) # для экспериментов
 
 
 # 4. Программа принимает действительное положительное число x и целое отрицательное число y.
