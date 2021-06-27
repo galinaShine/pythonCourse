@@ -171,11 +171,11 @@ while True:
                 else:
                     print(f'wrong element type for {stop_el}, continue')
     total_sum += sum(numb_list)
-    print(f'current sum: {sum(numb_list)}, total sum: {total_sum}')
     if stop:
-        print("you've decided to stop")
+        print(f"you've decided to stop, total sum: {total_sum}")
         break
-
+    else:
+        print(f'current sum: {sum(numb_list)}, total sum: {total_sum}')
 
 
 
