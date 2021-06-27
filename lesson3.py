@@ -122,11 +122,60 @@ print(my_func_2(32, -3))
 
 
 # 5. Программа запрашивает у пользователя строку чисел, разделенных пробелом.
-# При нажатии Enter должна выводиться сумма чисел. Пользователь может продолжить ввод чисел,
-# разделенных пробелом и снова нажать Enter. Сумма вновь введенных чисел будет добавляться к уже подсчитанной сумме.
+# При нажатии Enter должна выводиться сумма чисел. Пользователь может продолжить ввод чисел, разделенных пробелом
+# и снова нажать Enter. Сумма вновь введенных чисел будет добавляться к уже подсчитанной сумме.
 # Но если вместо числа вводится специальный символ, выполнение программы завершается.
 # Если специальный символ введен после нескольких чисел, то вначале нужно добавить сумму этих чисел к полученной ранее сумме
 # и после этого завершить программу.
+
+### вариант программы по описанию в методичке
+
+total_sum = 0
+stop = False
+while True:
+    entered_list = input('enter numbers: ').split(' ')
+    numb_list = []
+    for el in entered_list:
+        if el != '':
+            try:
+                el = int(el)
+                numb_list.append(el)
+            except ValueError:
+                stop_el = el
+                stop = True
+                break
+    total_sum += sum(numb_list)
+    print(f'current sum: {sum(numb_list)}, total sum: {total_sum}')
+    if stop:
+        print(f'wrong element type for {stop_el}, have to stop')
+        break
+
+
+### вариант программы по описанию из лекции (останавливаемся только по определенному символу)
+
+total_sum = 0
+stop = False
+while True:
+    entered_list = input('enter numbers, use "q" to stop').split(' ')
+    numb_list = []
+    for el in entered_list:
+        if el != '':
+            try:
+                el = int(el)
+                numb_list.append(el)
+            except ValueError:
+                stop_el = el
+                if stop_el == 'q':
+                    stop = True
+                    break
+                else:
+                    print(f'wrong element type for {stop_el}, continue')
+    total_sum += sum(numb_list)
+    print(f'current sum: {sum(numb_list)}, total sum: {total_sum}')
+    if stop:
+        print("you've decided to stop")
+        break
+
 
 
 
