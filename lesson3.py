@@ -1,7 +1,7 @@
 # 1. Реализовать функцию, принимающую два числа (позиционные аргументы) и выполняющую их деление.
 # Числа запрашивать у пользователя, предусмотреть обработку ситуации деления на ноль.
 
-def entered_numb(a,b):
+def dev(a, b):
     """
     выполняет деление двух чисел
     :param a: делимое
@@ -10,14 +10,27 @@ def entered_numb(a,b):
     """
     res = "can't do that" if b == 0 else round(a / b, 8)
     return res
+
 while True:
     a = int(input('enter first number:'))
     b = int(input('enter second number:'))
-    print(entered_numb(a,b))
+    print(dev(a, b))
 
 # через лямбду, но не поняла как в таком случае предусмотреть 0
 print((lambda num_1, num_2: num_1 / num_2)(int(input('enter first number:')), int(input('enter second number:'))))
 
+# через except
+def dev_2(a, b):
+    try:
+        res = a / b
+    except ZeroDivisionError as error:
+        res = error
+    return res
+
+while True:
+    a = int(input('enter first number:'))
+    b = int(input('enter second number:'))
+    print(dev_2(a, b))
 
 # 2. Реализовать функцию, принимающую несколько параметров, описывающих данные пользователя:
 # имя, фамилия, год рождения, город проживания, email, телефон.
@@ -83,6 +96,28 @@ print(my_list) # для экспериментов
 # Подсказка: попробуйте решить задачу двумя способами. Первый — возведение в степень с помощью оператора **.
 # Второй — более сложная реализация без оператора **, предусматривающая использование цикла.
 
+### через оператор **
+def my_func(x, y):
+    if (type(x) is int or type(x) is float) and x > 0 and type(y) is int and y < 0:
+        res = x ** y
+    else:
+        res = 'error'
+    return res
+
+print(my_func(32, -3))
+
+### через цикл
+def my_func_2(x, y):
+    if (type(x) is int or type(x) is float) and x > 0 and type(y) is int and y < 0:
+        res = 1
+        for i in range(abs(y)):
+            res *= x
+        res = 1 / res
+    else:
+        res = 'error'
+    return res
+
+print(my_func_2(32, -3))
 
 
 
