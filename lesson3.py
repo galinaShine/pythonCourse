@@ -17,7 +17,7 @@ while True:
     print(dev(a, b))
 
 # через лямбду, но не поняла как в таком случае предусмотреть 0
-print((lambda num_1, num_2: num_1 / num_2)(int(input('enter first number:')), int(input('enter second number:'))))
+print((lambda num_1, num_2: num_1 / num_2 if num_2 != 0 else 'wrong data')(int(input('enter first number:')), int(input('enter second number:'))))
 
 # через except
 def dev_2(a, b):
