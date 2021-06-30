@@ -1,17 +1,10 @@
-# 1. Реализовать скрипт, в котором должна быть предусмотрена функция расчета заработной платы сотрудника.
-# В расчете необходимо использовать формулу: (выработка в часах * ставка в час) + премия.
-# Для выполнения расчета для конкретных значений необходимо запускать скрипт с параметрами.
-
+# для тренировки
 
 import time
 import random
 print(time.time())
 print(random.random())
 import functions
-
-functions.show_msg()
-print(functions.simple_calc())
-
 
 my_list = [10, 25, 30, 45, 50]
 print(my_list)
@@ -23,10 +16,24 @@ print(randint(0, 10))
 from random import randrange
 print(randrange(20, 30, 8))
 
+generator = (param * param for param in range(5))
+for el in generator:
+    print(el)
+print(next(generator))
+
+from functools import partial
+def my_func(param_1, param_2):
+    return param_1 ** param_2
+new_my_func = partial(my_func, 2)
+print(new_my_func)
+print(new_my_func(4))
+
+
 # 2. Представлен список чисел. Необходимо вывести§ элементы исходного списка, значения которых больше предыдущего элемента.
 # Подсказка: элементы, удовлетворяющие условию, оформить в виде списка. Для формирования списка использовать генератор.
 # Пример исходного списка: [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55].
 # Результат: [12, 44, 4, 10, 78, 123].
+
 
 
 # 3. Для чисел в пределах от 20 до 240 найти числа, кратные 20 или 21. Необходимо решить задание в одну строку.
