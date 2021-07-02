@@ -74,7 +74,7 @@ while True:  # ручной ввод
     if ans == 'y':
         break
 # my_list = [2, 2, 2, 7, 23, 1, 44, 44, 3, 2, 10, 7, 4, 11] # заданный список
-new_list = [el for ind, el in enumerate(my_list) if my_list.count(el) == 1]
+new_list = [el for el in my_list if my_list.count(el) == 1]
 print(new_list)
 
 # 5. Реализовать формирование списка, используя функцию range() и возможности генератора.
@@ -84,13 +84,14 @@ print(new_list)
 
 from functools import reduce
 
-
-def my_func(prev_el, el):
-    return prev_el * el
-
+# def my_func(prev_el, el):     # переписала через lambda
+#     return prev_el * el
 
 my_list = [el for el in range(100, 1001) if el % 2 == 0]
-print(reduce(my_func, my_list))
+print(reduce(lambda acc, el: acc*el, my_list))
+
+
+
 
 # 6. Реализовать два небольших скрипта:
 # а) итератор, генерирующий целые числа, начиная с указанного,
@@ -135,7 +136,7 @@ while True:
 
 # с использованием max_numb
 numb_of_try = 0
-while numb_of_try <= max_numb - 1:
+while numb_of_try < max_numb:
     numb_of_try += 1
     print(next(my_list_cycle))
 
