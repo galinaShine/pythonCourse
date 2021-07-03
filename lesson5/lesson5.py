@@ -95,17 +95,44 @@ print(f'average salary: {avr_salary}')
 # Необходимо написать программу, открывающую файл на чтение и считывающую построчно данные.
 # При этом английские числительные должны заменяться на русские. Новый блок строк должен записываться в новый текстовый файл.
 
+from translate import Translator
+translator = Translator(to_lang="Russian")
+my_new_file = open('lesson5/test_4.txt', 'a', encoding='utf-8')
 with open('lesson5/task4.txt', 'r', encoding='utf-8') as f:
-    content = f.readlines()
-    print(content)
+    for line in f:
+        new_list = line.split(' ')
+        numb = new_list[0]
+        rest_line = ' '.join(new_list[1:])
+        rus_numb = translator.translate(numb)
+        print(' '.join([rus_numb, rest_line]), file=my_new_file, end='')
+my_new_file.writelines(['\n'])
+my_new_file.close()
 
-txt = 'One - 1 Two - 2 Three - 3 Four - 4'
-trans_table = str.maketrans({'One': 'Один', 'Two': 'Два', 'Tree': 'Три', 'Four': 'Четыре'})
-print(txt.translate(trans_table))
 
-txt = "Hello Sam!"
-mytable = txt.maketrans("S", "P")
-print(txt.translate(mytable))
+################### через функцию генератор
+
+from translate import Translator
+translator = Translator(to_lang="Russian")
+
+task4 = open('lesson5/task4.txt', 'r', encoding='utf-8')
+test_4 = open('lesson5/test_4.txt', 'a', encoding='utf-8')
+
+def my_func(file):
+    for line in file:
+        new_list = line.split(' ')
+        numb = new_list[0]
+        rest_line = ' '.join(new_list[1:])
+        rus_numb = translator.translate(numb)
+        new_line = ' '.join([rus_numb, rest_line])
+        yield new_line
+
+for line in my_func(task4):
+    print(line, file=test_4, end='')
+
+test_4.writelines(['\n'])
+task4.close()
+test_4.close()
+
 
 # 5. Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
 # Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
