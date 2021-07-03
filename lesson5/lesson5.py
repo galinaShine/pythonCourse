@@ -137,6 +137,22 @@ test_4.close()
 # 5. Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
 # Программа должна подсчитывать сумму чисел в файле и выводить ее на экран.
 
+with open('lesson5/test_5.txt', 'w', encoding='utf-8') as f:
+    total = 0
+    while True:
+        new_numb = input('enter new number:')
+        try:
+            new_numb = int(new_numb)
+            f.write(f'{new_numb} ')
+            total += new_numb
+            print(f'total sum: {total}')
+            enough = input('enough? y/n')
+            if enough == 'y':
+                print('the end')
+                break
+        except ValueError:
+            print('ValueError')
+            break
 
 
 # 6. Необходимо создать (не программно) текстовый файл, где каждая строка описывает учебный предмет и наличие лекционных,
