@@ -168,13 +168,27 @@ with open('lesson5/test_5.txt', 'w', encoding='utf-8') as f:
 # {“Информатика”: 170, “Физика”: 40, “Физкультура”: 30}
 
 
-
+my_dict = {}
+with open('lesson5/task6.txt', 'r', encoding='utf-8') as f:
+    for line in f:
+        line_content = line.split(' ') # ['Physics:', '70(л)', '20(пр)', '18(лаб)\n']
+        subj = line_content[0][:-1]
+        total_hours = 0
+        for el in line_content[1:]:   # ['70(л)', '20(пр)', '18(лаб)\n']
+            el = el.strip()
+            if el != '-':           # '70(л)
+                ind = el.find('(')
+                el = el[:ind]
+                total_hours += int(el)
+        my_dict[subj] = total_hours
+        print(line_content, subj, total_hours)
+print(my_dict)
 
 # 7. Создать (не программно) текстовый файл, в котором каждая строка должна содержать данные о фирме:
 # название, форма собственности, выручка, издержки.
-# Пример строки файла: firm_1 ООО 10000 5000.
 # Необходимо построчно прочитать файл, вычислить прибыль каждой компании, а также среднюю прибыль.
 # Если фирма получила убытки, в расчет средней прибыли ее не включать.
+
 # Далее реализовать список. Он должен содержать словарь с фирмами и их прибылями, а также словарь со средней прибылью.
 # Если фирма получила убытки, также добавить ее в словарь (со значением убытков).
 # Пример списка: [{“firm_1”: 5000, “firm_2”: 3000, “firm_3”: 1000}, {“average_profit”: 2000}].
@@ -184,3 +198,22 @@ with open('lesson5/test_5.txt', 'w', encoding='utf-8') as f:
 #
 # Подсказка: использовать менеджеры контекста.
 
+total_profit = 0
+numb_of_comp = 0
+my_list = [{}, {}]
+with open('lesson5/task7.txt', 'r', encoding='utf-8') as f:
+    for line in f: # Brooms ПАО 2500000 500000
+        line_content = line.split(' ') # ['Brooms', 'ПАО', '2500000', '500000\n']
+        name = line_content[0]
+        income = float(line_content[2])
+        expen = float(line_content[3].strip()) # ['Brooms', 'ПАО', '2500000', '500000']
+        profit = income - expen
+        if profit > 0:
+            total_profit += profit
+            numb_of_comp += 1 # не включала компании с отрицательной прибылью даже в подсчет кол-ва компаний, но может их не надо было включать только в общую сумму прибыли?
+        my_list[0][name] = profit
+    avr_profit = total_profit / numb_of_comp
+    my_list[1]['average_profit'] = avr_profit
+import json
+with open("lesson5/task7.json", "w", encoding='utf-8') as f:
+    json.dump(my_list, f, ensure_ascii=False, indent=4)
