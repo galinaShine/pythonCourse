@@ -1,36 +1,36 @@
 # для тренировки
-test = open('text.md', 'a', encoding='utf-8')
-test.writelines(['\n- четвертое', '\n- пятое', '\n- шестое'])
-print('- седьмое', file=test)
-for i in test:
-    print(i, end='')
-print(test)
-test.close()
-
-with open('text.md', 'a', encoding='utf-8') as test:
-    print('- восьмое', file=test)
-    print(test)
-
-import json
-
-data = {
-    'salary': {
-        "income" : 234,
-        'bonus': 123
-    },
-    'payment': True
-}
-
-with open('new_file.json', 'w', encoding='utf-8') as f:
-    json.dump(data, f)
-
-num_j = json.dumps(data)
-print(type(num_j))
-
-with open('new_file.json', 'r', encoding='utf-8') as f:
-    num_i = json.load(f)
-
-print(type(num_i))
+# test = open('text.md', 'a', encoding='utf-8')
+# test.writelines(['\n- четвертое', '\n- пятое', '\n- шестое'])
+# print('- седьмое', file=test)
+# for i in test:
+#     print(i, end='')
+# print(test)
+# test.close()
+#
+# with open('text.md', 'a', encoding='utf-8') as test:
+#     print('- восьмое', file=test)
+#     print(test)
+#
+# import json
+#
+# data = {
+#     'salary': {
+#         "income" : 234,
+#         'bonus': 123
+#     },
+#     'payment': True
+# }
+#
+# with open('new_file.json', 'w', encoding='utf-8') as f:
+#     json.dump(data, f)
+#
+# num_j = json.dumps(data)
+# print(type(num_j))
+#
+# with open('new_file.json', 'r', encoding='utf-8') as f:
+#     num_i = json.load(f)
+#
+# print(type(num_i))
 
 #######################################################################
 
