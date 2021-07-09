@@ -83,7 +83,7 @@ class Road:
         self._width = w
 
     def calculate(self, mass_per_km, cm):
-        mass = self._length * self._width * mass_per_km * cm
+        mass = self._length * self._width * mass_per_km * cm / 1000
         print(mass)
 
 road_1 = Road(float(input('enter the length: ')), float(input('enter the width: ')))
@@ -138,7 +138,9 @@ worker_4.print_all()
 # Создайте экземпляры классов, передайте значения атрибутов. Выполните доступ к атрибутам, выведите результат.
 # Выполните вызов методов и также покажите результат.
 
+import random
 
+direction = ['left', 'right']
 class Car:
     def __init__(self, s, c, n, p):
         self.speed = float(s)
@@ -155,6 +157,10 @@ class Car:
     def turn(self, direction):
         print(f'the car turned {direction}')
 
+    def turn_random(self):
+        self.direction = random.choice(direction)
+        print(f'the car turned {self.direction}')
+
     def show_speed(self):
         print(f'the speed is {self.speed}')
 
@@ -167,8 +173,7 @@ class TownCar(Car):
             print('wrong type')
 
     def show_speed(self):
-        if self.speed > 60:
-            print(f'the speed is {self.speed}, speed limit!')
+        print(f'the speed is {self.speed}, speed limit!') if self.speed > 60 else print(f'the speed is {self.speed}')
 
 class SportCar(Car):
 
@@ -185,8 +190,7 @@ class WorkCar(Car):
             print('wrong type')
 
     def show_speed(self):
-        if self.speed > 40:
-            print(f'the speed is {self.speed}, speed limit!')
+        print(f'the speed is {self.speed}, speed limit!') if self.speed > 40 else print(f'the speed is {self.speed}')
 
 class PoliceCar(Car):
 
@@ -200,9 +204,8 @@ my_car = PoliceCar(30, 'red', 'BMW', True)
 print(my_car.is_police)
 my_car = PoliceCar(30, 'red', 'BMW', 0)
 
-my_car_2 = WorkCar(330, 'red', 'BMW', 5)
+my_car_2 = WorkCar(40, 'red', 'BMW', 5)
 my_car_2.turn('left')
-my_car_2.show_speed()
 my_car_2.show_speed()
 
 my_car_3 = TownCar(30, 'red', 'BMW', True)
@@ -210,6 +213,8 @@ my_car_3.stop()
 
 my_car_4 = SportCar(30, 'red', 'BMW', False)
 my_car_4.go()
+my_car_4.turn_random()
+
 
 
 # 5. Реализовать класс Stationery (канцелярская принадлежность). Определить в нем атрибут title (название) и метод draw (отрисовка).
