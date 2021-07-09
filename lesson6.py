@@ -111,8 +111,6 @@ class Worker:
 
 
 class Position(Worker):
-    def __init__(self, n, s, p, w, b):
-        super().__init__(n, s, p, w, b)
 
     def get_full_name(self):
         print(f'full name: {self.name} {self.surname}')
@@ -123,9 +121,9 @@ class Position(Worker):
 
 
 worker_1 = Position('Ivan', 'Urgant', 'TV Host', '123', '456')
-worker_2.get_full_name()
-worker_3.get_total_income()
-worker_4.print_all()
+worker_1.get_full_name()
+worker_1.get_total_income()
+worker_1.print_all()
 
 
 
@@ -234,26 +232,17 @@ class Stationery:
 
 class Pen(Stationery):
 
-    def __init__(self, t):
-        super().__init__(t)
-
     def draw(self):
         print('drawing with a pen')
 
 
 class Pencil(Stationery):
 
-    def __init__(self, t):
-        super().__init__(t)
-
     def draw(self):
         print('drawing with a pencil')
 
 
 class Handle(Stationery):
-
-    def __init__(self, t):
-        super().__init__(t)
 
     def draw(self):
         print('drawing with a handle')
